@@ -410,6 +410,7 @@ body {
   .container {
     padding: 0px -15px;
   }
+  
 }
 
 @media (max-width: 992px) {
@@ -452,6 +453,7 @@ body {
     max-width: 300px;
     margin: 10px auto;
   }
+  
 }
 
 @media (max-width: 768px) {
@@ -484,6 +486,7 @@ body {
   .social i {
     font-size: 20px;
   }
+  
 }
 
 @media (max-width: 576px) {
@@ -523,5 +526,9 @@ body {
 
   .social i {
     font-size: 18px;
+  }
+  .iam p {
+    width: 360px !important;
+    margin-left: -70px;
   }
 }
