@@ -122,13 +122,3 @@ window.addEventListener("scroll", () => {
   const scrollPercentage = (scrollTop / scrollHeight) * 100;
   progressBar.style.width = `${scrollPercentage}%`;
 });
-
-// Enhanced Parallax Effect using JavaScript
-window.addEventListener("scroll", function () {
-  const parallaxBackground = document.querySelector(".parallax-background");
-  const scrollPosition = window.pageYOffset;
-
-  // Adjust the background position for the parallax effect
-  parallaxBackground.style.transform =
-    "translateY(" + scrollPosition * 0.5 + "px)";
-});
