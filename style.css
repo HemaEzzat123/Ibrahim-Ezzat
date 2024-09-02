@@ -95,7 +95,8 @@ body {
 }
 
 /* About section */
-.About , .Talk {
+.About,
+.Talk {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -113,7 +114,6 @@ body {
   animation: bounceIn 1.5s ease-out;
   height: 300px;
 }
-
 
 .iam {
   max-width: 50%;
@@ -199,7 +199,6 @@ body {
 .card a:hover {
   color: #333;
 }
-
 
 /* Footer section */
 .footer {
@@ -379,7 +378,7 @@ body {
 
 /* Parallax background image */
 .parallax-background {
-  background-image: url('images/your-parallax-image.jpg'); /* Replace with your image path */
+  background-image: url("images/your-parallax-image.jpg"); /* Replace with your image path */
   position: absolute;
   top: 0;
   left: 0;
@@ -397,8 +396,132 @@ body {
   position: relative;
   z-index: 1;
   padding: 20px;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: Adds a translucent background to the content */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Optional: Adds a translucent background to the content */
   border-radius: 8px;
 }
 
+/* General responsive adjustments */
+@media (max-width: 1200px) {
+  .container {
+    padding: 0px -15px;
+  }
+}
 
+@media (max-width: 992px) {
+  .navbar ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar ul li {
+    text-align: center;
+  }
+
+  .Home {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .HomeAbout {
+    max-width: 100%;
+  }
+
+  .personalPhoto img {
+    width: 400px;
+  }
+
+  .About,
+  .Talk {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .aboutPhoto img {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .projects .card,
+  .moreProjects .card {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .HomeAbout h1 {
+    font-size: 2.5rem;
+  }
+
+  .HomeAbout h3 {
+    font-size: 1.2rem;
+  }
+
+  .personalPhoto img {
+    width: 350px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .aboutPhoto img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .footer {
+    padding: 20px;
+  }
+
+  .social i {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar ul {
+    padding: 0;
+  }
+
+  .navbar ul li {
+    font-size: 16px;
+  }
+
+  .HomeAbout h1 {
+    font-size: 1.8rem;
+  }
+
+  .HomeAbout h3 {
+    font-size: 1rem;
+  }
+
+  .personalPhoto img {
+    width: 320px;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .aboutPhoto img {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .footer {
+    font-size: 14px;
+  }
+
+  .social i {
+    font-size: 18px;
+  }
+}
