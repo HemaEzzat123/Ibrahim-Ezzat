@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+
+body {
+  @apply bg-gradient-to-r from-pink-200 via-pink-100 to-blue-100 min-h-screen;
+}
+
+@layer base {
+  :root {
+    --background: 27 27 27;
+    --foreground: 225 225 225;
+    --muted     : 115 115 115;
+    --accent    : 254 254 91;
+    /* hex value of rgb(254,254,91) color is  #FEFE5B  */
+  }
+}
+
+@layer utilities {
+  .pause {
+    animation-play-state: paused;
+  }
+
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(100px, 100px);
+  }
+}
+
+/* Reset some default browser styles */
