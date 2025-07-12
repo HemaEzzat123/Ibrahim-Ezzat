@@ -12,7 +12,7 @@ export default function Modal({ isOpen, onClose, imgSrc, alt }) {
         onClick={(e) => e.stopPropagation()}
       >
         <button
-          className="absolute top-2 right-2 text-white text-3xl font-bold bg-black bg-opacity-40 rounded-full px-3 py-1 hover:bg-opacity-70 transition"
+          className="absolute top-2 right-2 text-white text-2xl sm:text-3xl font-bold bg-black bg-opacity-40 rounded-full px-2 sm:px-3 py-1 hover:bg-opacity-70 transition"
           onClick={onClose}
           aria-label="Close"
         >
@@ -21,7 +21,7 @@ export default function Modal({ isOpen, onClose, imgSrc, alt }) {
         <img
           src={imgSrc}
           alt={alt || "Enlarged"}
-          className="rounded-lg shadow-2xl max-h-[80vh] max-w-[90vw] object-contain"
+          className="rounded-lg shadow-2xl max-h-[80vh] max-w-[95vw] sm:max-w-[90vw] object-contain"
         />
       </div>
     </div>
