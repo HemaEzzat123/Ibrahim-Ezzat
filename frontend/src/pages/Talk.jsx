@@ -12,6 +12,13 @@ const certificates = [
     glow: "from-pink-400 to-purple-500",
   },
   {
+    src: "/images/vercel.jpg",
+    alt: "Next.js Certificate",
+    title: "Next.js Developer",
+    category: "Full Stack",
+    glow: "from-pink-400 to-purple-500",
+  },
+  {
     src: "/images/depiii.png",
     alt: "Depi Certificate",
     title: "Business English",

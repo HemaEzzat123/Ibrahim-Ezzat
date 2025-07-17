@@ -6,6 +6,35 @@ export default function Projects() {
   const projects = [
     {
       id: "1",
+      img: "/images/project.jpg",
+      title: "Ai Chatbot",
+      live: "https://nextjs-ai-chatbot-eight-gold-77.vercel.app/",
+      source: "https://github.com/HemaEzzat123/nextjs-ai-chatbot",
+      category: "education",
+      difficulty: "advanced",
+      tech: [
+        "Next.js",
+        "TailwindCss",
+        "OpenAI API",
+        "MongoDB",
+        "Socket.io",
+        "Express.js",
+        "multer",
+        "Node.js",
+        "React",
+        "TypeScript",
+        "Axios",
+        "Framer Motion",
+        "dotenv",
+        "bcrypt",
+        "jsonwebtoken",
+        "cors",
+      ],
+      description:
+        "AI-powered chatbot application with real-time messaging and file sharing capabilities",
+    },
+    {
+      id: "2",
       img: "/images/project4.png",
       title: "Learning English",
       live: "https://hemaezzat123.github.io/Learning-English-Letters/",
@@ -16,7 +45,7 @@ export default function Projects() {
       description: "Interactive English learning platform",
     },
     {
-      id: "2",
+      id: "3",
       img: "/images/project12.png",
       title: "Social-media",
       source: "https://github.com/HemaEzzat123/Social-media",
@@ -34,7 +63,7 @@ export default function Projects() {
       description: "Full-stack social media application",
     },
     {
-      id: "3",
+      id: "4",
       img: "/images/project11.png",
       title: "Dictionary web app",
       live: "https://dictionary-web-app-dun-xi.vercel.app/",
@@ -45,7 +74,7 @@ export default function Projects() {
       description: "Comprehensive dictionary application",
     },
     {
-      id: "4",
+      id: "5",
       img: "/images/project13.png",
       title: "Github Finder App",
       live: "https://git-hub-finder-gold.vercel.app/",
@@ -56,7 +85,7 @@ export default function Projects() {
       description: "GitHub user search and profile viewer",
     },
     {
-      id: "5",
+      id: "6",
       img: "/images/project15.png",
       title: "Event Book System",
       source: "https://github.com/HemaEzzat123/Event-Booking-System",
@@ -66,7 +95,7 @@ export default function Projects() {
       description: "Complete event booking management system",
     },
     {
-      id: "6",
+      id: "7",
       img: "/images/project17.png",
       title: "house market place",
       live: "https://house-market-place-teal-beta.vercel.app/",
@@ -77,7 +106,7 @@ export default function Projects() {
       description: "Real estate marketplace platform",
     },
     {
-      id: "7",
+      id: "8",
       img: "/images/project16.jpg",
       title: "Queueing Models",
       live: "https://queueing-models-calculations.vercel.app/",
@@ -88,7 +117,7 @@ export default function Projects() {
       description: "Mathematical queueing model calculator",
     },
     {
-      id: "8",
+      id: "9",
       img: "/images/project6.png",
       title: "Advice Generator",
       live: "https://hemaezzat123.github.io/advice-generator-app-main/",
@@ -99,7 +128,7 @@ export default function Projects() {
       description: "Random advice generator with API integration",
     },
     {
-      id: "9",
+      id: "10",
       img: "/images/project3.png",
       title: "Twitter Clone",
       live: "https://hemaezzat123.github.io/TwitterClone/",
@@ -110,7 +139,7 @@ export default function Projects() {
       description: "Twitter-like social media clone",
     },
     {
-      id: "10",
+      id: "11",
       img: "/images/project7.png",
       title: "Bank System",
       source: "https://github.com/HemaEzzat123/Bank-System",
@@ -120,7 +149,7 @@ export default function Projects() {
       description: "Complete banking system simulation",
     },
     {
-      id: "11",
+      id: "12",
       img: "/images/project8.jpg",
       title: "Note App",
       source: "https://github.com/HemaEzzat123/Note-App",
@@ -130,7 +159,7 @@ export default function Projects() {
       description: "Personal note-taking application",
     },
     {
-      id: "12",
+      id: "13",
       img: "/images/project1.png",
       title: "FeedBack-UI",
       source: "https://github.com/HemaEzzat123/FeedBack-UI",
@@ -140,7 +169,7 @@ export default function Projects() {
       description: "Interactive feedback user interface",
     },
     {
-      id: "13",
+      id: "14",
       img: "/images/project5.png",
       title: "Animated Form",
       live: "https://hemaezzat123.github.io/Animated-Form/",
@@ -151,7 +180,7 @@ export default function Projects() {
       description: "Beautiful animated form design",
     },
     {
-      id: "14",
+      id: "15",
       img: "/images/project2.png",
       title: "Gallery Slide Show",
       source: "https://github.com/HemaEzzat123/galleria-slideshow-site",
@@ -161,7 +190,7 @@ export default function Projects() {
       description: "Interactive image gallery slideshow",
     },
     {
-      id: "15",
+      id: "16",
       img: "/images/project10.jpg",
       title: "Tip Calculator",
       live: "https://hemaezzat123.github.io/tip-calculator-app-main/tipCalculator/index.html",
