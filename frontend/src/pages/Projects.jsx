@@ -1,6 +1,184 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue } from "framer-motion";
-import Modal from "../components/Modal";
+
+// Project Detail Modal Component
+const ProjectModal = ({ isOpen, onClose, project }) => {
+  if (!project) return null;
+
+  const getDifficultyColor = (difficulty) => {
+    const colors = {
+      beginner: "bg-green-500",
+      intermediate: "bg-yellow-500",
+      advanced: "bg-red-500",
+    };
+    return colors[difficulty] || "bg-gray-500";
+  };
+
+  const handleLiveDemoClick = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  const handleSourceClick = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          onClick={onClose}
+        >
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+
+          {/* Modal Content */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0, y: 50 }}
+            animate={{ scale: 1, opacity: 1, y: 0 }}
+            exit={{ scale: 0.8, opacity: 0, y: 50 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-white/20 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white transition-all duration-200 z-10"
+            >
+              ✕
+            </button>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Project Image */}
+              <div className="space-y-4">
+                <div className="relative overflow-hidden rounded-xl">
+                  <img
+                    src={project.img}
+                    alt={project.title}
+                    className="w-full h-64 lg:h-80 object-cover rounded-xl"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-3">
+                  {project.live && (
+                    <button
+                      onClick={() => handleLiveDemoClick(project.live)}
+                      className="flex-1 px-4 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg text-center hover:from-pink-600 hover:to-purple-600 transition-all duration-300 font-medium hover:scale-105 active:scale-95"
+                    >
+                      🚀 Live Demo
+                    </button>
+                  )}
+                  {project.source && (
+                    <button
+                      onClick={() => handleSourceClick(project.source)}
+                      className="flex-1 px-4 py-3 bg-white/10 text-white rounded-lg text-center hover:bg-white/20 transition-all duration-300 font-medium hover:scale-105 active:scale-95"
+                    >
+                      📁 Source Code
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Project Details */}
+              <div className="space-y-6">
+                {/* Header */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-3xl font-bold text-white">
+                      {project.title}
+                    </h2>
+                    <div className="flex items-center gap-2">
+                      <div
+                        className={`w-3 h-3 rounded-full ${getDifficultyColor(
+                          project.difficulty
+                        )}`}
+                      />
+                      <span className="text-sm text-gray-300 capitalize">
+                        {project.difficulty}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    <span className="px-3 py-1 text-sm bg-gradient-to-r from-pink-500/20 to-purple-500/20 text-pink-300 rounded-full border border-pink-500/30">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <div className="space-y-2">
+                  <h3 className="text-lg font-semibold text-white">About</h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
+
+                {/* Tech Stack */}
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold text-white">
+                    Technologies Used
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech, index) => (
+                      <motion.span
+                        key={index}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.05 }}
+                        className="px-3 py-1 text-sm bg-white/10 text-gray-300 rounded-full border border-white/20 hover:bg-white/20 transition-colors"
+                      >
+                        {tech}
+                      </motion.span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Project Stats */}
+                <div className="grid grid-cols-2 gap-4 pt-4">
+                  <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                    <div className="text-2xl font-bold text-white">
+                      {project.tech.length}
+                    </div>
+                    <div className="text-sm text-gray-400">Technologies</div>
+                  </div>
+                  <div className="bg-white/5 rounded-lg p-4 border border-white/10">
+                    <div className="text-2xl font-bold text-white">
+                      {project.live ? "✅" : "🚧"}
+                    </div>
+                    <div className="text-sm text-gray-400">
+                      {project.live ? "Live" : "In Development"}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative elements */}
+            <motion.div
+              className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-60 pointer-events-none"
+              animate={{
+                y: [0, -10, 0],
+                opacity: [0.6, 1, 0.6],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
 
 export default function Projects() {
   const projects = [
@@ -31,7 +209,7 @@ export default function Projects() {
         "cors",
       ],
       description:
-        "AI-powered chatbot application with real-time messaging and file sharing capabilities",
+        "AI-powered chatbot application with real-time messaging and file sharing capabilities. Features include intelligent conversation handling, user authentication, file upload support, and real-time communication through WebSockets.",
     },
     {
       id: "2",
@@ -62,12 +240,12 @@ export default function Projects() {
         "Supertest",
       ],
       description:
-        "Full-Stack MERN application with bilingual support (Arabic/English), admin dashboard for content management, online consultation booking, secure authentication, and SEO-optimized responsive design.",
+        "Full-Stack MERN application with bilingual support (Arabic/English), admin dashboard for content management, online consultation booking, secure authentication, and SEO-optimized responsive design. Built for a construction company to showcase their services and manage client interactions.",
     },
     {
       id: "3",
       img: "/images/project12.png",
-      title: "Social-media",
+      title: "Social Media Platform",
       source: "https://github.com/HemaEzzat123/Social-media",
       category: "social",
       difficulty: "advanced",
@@ -80,13 +258,14 @@ export default function Projects() {
         "multer",
         "TailwindCss",
       ],
-      description: "Full-stack social media application",
+      description:
+        "Full-stack social media application with real-time messaging, post sharing, user profiles, friend connections, and media uploads. Features include live notifications, comment systems, and responsive design.",
     },
     {
       id: "4",
       img: "/images/stream.jpg",
       title: "Fullstack Chat & Video Calling App",
-      source: "https://github.com/HemaEzzat123/Streamify", // ضع لينك الريبو هنا
+      source: "https://github.com/HemaEzzat123/Streamify",
       category: "communication",
       difficulty: "advanced",
       tech: [
@@ -105,22 +284,24 @@ export default function Projects() {
     {
       id: "5",
       img: "/images/project7.png",
-      title: "Bank System",
+      title: "Bank Management System",
       source: "https://github.com/HemaEzzat123/Bank-System",
       category: "finance",
       difficulty: "advanced",
       tech: ["Java", "Swing", "GUI"],
-      description: "Complete banking system simulation",
+      description:
+        "Complete banking system simulation with account management, transaction processing, user authentication, and financial reporting. Built with Java Swing for a desktop application experience.",
     },
     {
       id: "6",
       img: "/images/project8.jpg",
-      title: "Note App",
+      title: "Smart Note Application",
       source: "https://github.com/HemaEzzat123/Note-App",
       category: "productivity",
       difficulty: "advanced",
       tech: ["Java", "Swing", "file storage", "GUI"],
-      description: "Personal note-taking application",
+      description:
+        "Personal note-taking application with rich text editing, categorization, search functionality, and local file storage. Features an intuitive GUI built with Java Swing.",
     },
     {
       id: "7",
@@ -253,8 +434,8 @@ export default function Projects() {
     },
   ];
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalImg, setModalImg] = useState(projects[0].img);
+  const [projectModalOpen, setProjectModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [particles, setParticles] = useState([]);
   const containerRef = useRef(null);
@@ -273,6 +454,7 @@ export default function Projects() {
     "productivity",
     "ui",
     "media",
+    "communication",
   ];
 
   const filteredProjects =
@@ -322,16 +504,18 @@ export default function Projects() {
     return colors[difficulty] || "bg-gray-500";
   };
 
-  const handleImageClick = (imgSrc) => {
-    setModalImg(imgSrc);
-    setModalOpen(true);
+  const handleCardClick = (project) => {
+    setSelectedProject(project);
+    setProjectModalOpen(true);
   };
 
-  const handleLiveDemoClick = (url) => {
+  const handleLiveDemoClick = (e, url) => {
+    e.stopPropagation();
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
-  const handleSourceClick = (url) => {
+  const handleSourceClick = (e, url) => {
+    e.stopPropagation();
     window.open(url, "_blank", "noopener,noreferrer");
   };
 
@@ -455,7 +639,8 @@ export default function Projects() {
                   rotateY: 5,
                   z: 50,
                 }}
-                className="group relative"
+                className="group relative cursor-pointer"
+                onClick={() => handleCardClick(project)}
               >
                 {/* Floating Island Card */}
                 <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/20 shadow-2xl hover:shadow-purple-500/25 transition-all duration-500 overflow-hidden">
@@ -467,10 +652,16 @@ export default function Projects() {
                     <img
                       src={project.img}
                       alt={project.title}
-                      className="w-full h-48 object-cover rounded-xl cursor-pointer hover:scale-110 transition-transform duration-300"
-                      onClick={() => handleImageClick(project.img)}
+                      className="w-full h-48 object-cover rounded-xl group-hover:scale-110 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+
+                    {/* Click to view indicator */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 text-white text-sm font-medium">
+                        Click to view details
+                      </div>
+                    </div>
                   </div>
 
                   {/* Project Info */}
@@ -507,20 +698,20 @@ export default function Projects() {
                       )}
                     </div>
 
-                    {/* Action Buttons */}
+                    {/* Quick Action Buttons */}
                     <div className="flex gap-2 pt-2 relative z-10">
                       {project.live && (
                         <button
-                          onClick={() => handleLiveDemoClick(project.live)}
-                          className="flex-1 px-3 py-2 text-sm bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg text-center hover:from-pink-600 hover:to-purple-600 transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 relative z-20"
+                          onClick={(e) => handleLiveDemoClick(e, project.live)}
+                          className="flex-1 px-3 py-2 text-sm bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg text-center hover:from-pink-600 hover:to-purple-600 transition-all duration-300 hover:scale-105 active:scale-95"
                         >
                           Live Demo
                         </button>
                       )}
                       {project.source && (
                         <button
-                          onClick={() => handleSourceClick(project.source)}
-                          className="flex-1 px-3 py-2 text-sm bg-white/10 text-white rounded-lg text-center hover:bg-white/20 transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95 relative z-20"
+                          onClick={(e) => handleSourceClick(e, project.source)}
+                          className="flex-1 px-3 py-2 text-sm bg-white/10 text-white rounded-lg text-center hover:bg-white/20 transition-all duration-300 hover:scale-105 active:scale-95"
                         >
                           Source
                         </button>
@@ -594,11 +785,11 @@ export default function Projects() {
         </motion.div>
       </div>
 
-      <Modal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        imgSrc={modalImg}
-        alt="Project"
+      {/* Project Detail Modal */}
+      <ProjectModal
+        isOpen={projectModalOpen}
+        onClose={() => setProjectModalOpen(false)}
+        project={selectedProject}
       />
     </section>
   );
